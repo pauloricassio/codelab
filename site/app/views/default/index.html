@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body id="app" is="body-bind" class="loading fullbleed {% if view.id != 'default' -%}view{%- endif -%}">
   <paper-header-panel id="main" mode="standard" main>
     {% raw %}
-    <div id="mainToolbar" class="paper-header">
+    <!-- <div id="mainToolbar" class="paper-header">
       <div class="site-width layout horizontal">
         <a href="/">
           <img src="/images/logo.png" class="logo-devs" alt="Codelabs Logo">
@@ -109,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-input-container>
         </div>
       </div>
-    </div>
+    </div> -->
     {% endraw %}
 
     {# Event pages force down attribute. On homepage, it's applied dynamically. #}
@@ -127,7 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <br>
             <a href="https://github.com/googlecodelabs/tools">Codelab tools on GitHub</a>
           </p>
-        {%- else -%}
+        <!-- {%- else -%}
           <div class="banner-description">
             <img id="logo" src="{{view.logoUrl}}" alt="Event logo">
             <div class="banner-meta">
@@ -137,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               {%- endif %}
             </div>
         {%- endif %}
-          </div>
+          </div> -->
       </div>
     </header>
 
@@ -235,9 +235,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </main>
 
+    <!--
     <footer id="footer">
       <div class="footer-wrapper site-width">
-        <div class="link-list">
+         <div class="link-list">
           <label>Connect</label>
           <ul>
             <li><a href="https://www.example.com/">Example</a></li>
@@ -273,6 +274,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </span>
       </div>
     </div>
+    -->
 
   </paper-header-panel>
 
