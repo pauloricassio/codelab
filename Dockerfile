@@ -13,17 +13,10 @@ RUN cd site && npm install
 
 COPY . .
 
-# Aqui está o ajuste!
 RUN cd site/codelabs && \
-    find . -name "*.md" | while read md; do \
-      dir="${md%.md}"; \
-      echo "Verificando $md -> $dir"; \
-      if [ ! -d "$dir" ]; then \
-        echo "Exportando $md"; \
-        claat export "$md"; \
-      else \
-        echo "Diretório $dir já existe, pulando"; \
-      fi; \
+    find . -name "*.md" ! -name "how-to-write-a-codelab.md" | while read md; do \
+      echo "Exportando $md"; \
+      claat export "$md"; \
     done && \
     echo "Conteúdo de site/codelabs após claat export:" && \
     ls -la .
