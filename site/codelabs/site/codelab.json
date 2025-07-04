@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2025-06-24T13:13:53-03:00",
+  "updated": "2025-07-04T08:30:27-03:00",
   "id": "site",
   "duration": 8,
   "title": "Teste 123",
@@ -15,7 +15,7 @@
     "published"
   ],
   "category": [
-    "sample"
+    "slides"
   ],
   "tags": [
     "medium"

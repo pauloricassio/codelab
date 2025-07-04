@@ -1,6 +1,6 @@
 summary: Teste 123
 id: site
-categories: sample
+categories: slides
 tags: medium
 status: Published 
 authors: Zarin
