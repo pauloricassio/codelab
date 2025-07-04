@@ -54,47 +54,123 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .dropdown-filter {
       --paper-input-container: {
         padding: 8px;
-      }
+      };
+      width: 350px !important;
+      min-width: 350px !important;
+      max-width: 350px !important;
     }
 
-    /* Estilos para o filtro de busca */
-    .search-filter-container {
+    /* Estilos para o filtro híbrido modificado */
+    .hybrid-category-filter {
+      --paper-input-container: {
+        padding: 0px 8px !important;
+        background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+        height: auto !important;
+        min-height: 36px !important;
+      };
+      --paper-input-container-input: {
+        cursor: text !important;
+        pointer-events: auto !important;
+        background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+        color: rgba(0, 0, 0, 0.87) !important;
+        height: 18px !important;
+        line-height: 18px !important;
+        font-size: 14px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      };
+      --paper-input-container-input-focus: {
+        background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+      };
+      --paper-input-container-label: {
+        display: none !important; /* FORÇAR LABEL NATIVO A DESAPARECER */
+        visibility: hidden !important;
+        opacity: 0 !important;
+      };
+      --paper-input-container-label-focus: {
+        display: none !important; /* FORÇAR LABEL NATIVO A DESAPARECER */
+        visibility: hidden !important;
+        opacity: 0 !important;
+      };
+      --paper-input-container-label-floating: {
+        display: none !important;
+      };
+      width: 350px !important;
+      min-width: 350px !important;
+      max-width: 350px !important;
       position: relative;
-      display: inline-block;
-      margin-left: 16px;
-      min-width: 200px; /* Largura mínima igual aos outros filtros */
+      background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+      height: 36px !important;
+      max-height: 36px !important;
+      overflow: hidden !important;
     }
-    
-    .search-input-direct {
-      padding: 12px 16px; /* Padding normal sem espaço para ícone */
-      border: 1px solid rgba(0, 0, 0, 0.12); /* Borda com opacidade igual aos outros filtros */
-      border-radius: 4px;
-      font-size: 16px; /* Tamanho da fonte igual aos outros filtros */
-      outline: none;
-      transition: border-color 0.3s ease;
-      width: 100%;
-      min-width: 200px; /* Largura mínima */
-      height: 40px; /* Altura específica para igualar aos outros filtros */
-      box-sizing: border-box;
-      font-family: 'Roboto', 'Noto', sans-serif; /* Fonte igual aos outros filtros */
-      font-weight: 400; /* Peso da fonte igual aos outros filtros */
-      background-color: #ffffff; /* Fundo branco explícito */
-      color: rgba(0, 0, 0, 0.87); /* Cor do texto igual aos outros filtros */
+
+    /* Forçar fundo branco em todos os elementos internos */
+    .hybrid-category-filter paper-input,
+    .hybrid-category-filter paper-input-container,
+    .hybrid-category-filter input {
+      background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+      color: rgba(0, 0, 0, 0.87) !important;
+      height: 18px !important;
+      font-size: 14px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      outline: none !important;
     }
-    
-    .search-input-direct:focus {
-      border-color: #4285f4;
-      box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
-      background-color: #ffffff; /* Manter fundo branco no foco */
+
+    /* DESABILITAR COMPLETAMENTE TODOS OS LABELS NATIVOS */
+    .hybrid-category-filter label,
+    .hybrid-category-filter paper-input-container label,
+    .hybrid-category-filter paper-dropdown-menu label {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      left: -9999px !important;
     }
-    
-    .search-input-direct::placeholder {
-      color: rgba(0, 0, 0, 0.54); /* Cor do placeholder igual aos labels dos outros filtros */
-      font-size: 16px; /* Tamanho igual ao texto dos outros filtros */
-      font-weight: 400; /* Peso da fonte igual */
+
+    /* NOSSA LABEL CUSTOMIZADA */
+    .hybrid-category-filter::before {
+      content: "Search or select category";
+      color: rgba(0, 0, 0, 0.54) !important;
+      font-size: 14px !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 8px !important;
+      transform: translateY(-50%) !important;
+      pointer-events: none !important;
+      z-index: 2 !important;
+      transition: opacity 0.2s ease !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
-    
-    .search-stats-display {
+
+    /* Input centralizado */
+    .hybrid-category-filter input {
+      margin-top: 0px !important;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+      font-size: 14px !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 8px !important;
+      right: 8px !important;
+      transform: translateY(-50%) !important;
+      width: calc(100% - 16px) !important;
+      background: transparent !important;
+      z-index: 3 !important;
+    }
+
+    /* Esconder NOSSA label customizada quando há conteúdo ou foco */
+    .hybrid-category-filter.has-content::before,
+    .hybrid-category-filter.is-focused::before {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
+    /* Estilos para estatísticas de busca */
+    .search-stats-overlay {
       position: absolute;
       top: 100%;
       left: 0;
@@ -110,12 +186,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: none;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-    
-    .search-input-direct:focus + .search-stats-display,
-    .search-stats-display.show {
+
+    .search-stats-overlay.show {
       display: block;
     }
-    
+
     .codelab-card.search-hidden {
       display: none !important;
     }
@@ -126,11 +201,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       transition: all 0.3s ease;
     }
 
-    /* Ajustar alinhamento dos filtros */
-    #filters .search-filter-container {
-      display: flex;
-      align-items: center;
-      height: 56px; /* Altura padrão dos paper-dropdown-menu */
+    /* Garantir que todos os filtros tenham o mesmo tamanho */
+    #filters .dropdown-filter,
+    #filters .hybrid-category-filter {
+      flex: 0 0 350px !important;
+    }
+
+    /* Forçar fundo branco no dropdown */
+    .dropdown-content {
+      background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+    }
+
+    paper-item {
+      background-color: #ffffff !important; /* CORRIGIDO: #ffffff ao invés de #ffff */
+      color: rgba(0, 0, 0, 0.87) !important;
+    }
+
+    paper-item:hover {
+      background-color: rgba(66, 133, 244, 0.1) !important;
     }
   </style>
 
@@ -252,38 +340,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {% endif %}
 
         {%- if showcats -%}
-        <paper-dropdown-menu
-          label="Filter by category"
-          class="dropdown-filter"
-          no-label-float
-          noink no-animations
-        >
-          <paper-listbox
-            id="categorylist"
-            slot="dropdown-content"
-            class="dropdown-content"
-            on-iron-activate="onCategoryActivate"
-            attr-for-selected="filter"
+        <!-- Filtro Híbrido: Modificação do filtro de categoria original -->
+        <div class="hybrid-category-filter-wrapper" style="position: relative;">
+          <paper-dropdown-menu
+            id="hybridCategoryFilter"
+            class="hybrid-category-filter"
+            no-label-float
+            noink no-animations
           >
+            <paper-listbox
+              id="hybridCategoryList"
+              slot="dropdown-content"
+              class="dropdown-content"
+              on-iron-activate="onHybridCategoryActivate"
+              attr-for-selected="filter"
+            >
+              <!-- Opção "All categories" -->
+              <paper-item filter="">All categories</paper-item>
               {% for category in categories -%}
                 {%- if categoryHasShowableCodelabs(category, codelabs) -%}
                   <paper-item filter="{{category}}">{{category}}</paper-item>
                 {%- endif -%}
               {%- endfor %}
-          </paper-listbox>
-        </paper-dropdown-menu>
-        {%- endif -%}
-
-        <!-- Filtro de Busca por Nome -->
-        <div class="search-filter-container">
-          <input 
-            type="text" 
-            id="searchInput" 
-            placeholder="Filter by name" 
-            class="search-input-direct"
-          />
-          <div id="searchStats" class="search-stats-display"></div>
+            </paper-listbox>
+          </paper-dropdown-menu>
+          <div id="hybridSearchStats" class="search-stats-overlay"></div>
         </div>
+        {%- endif -%}
       </div>
 
       <card-sorter id="cards" class="site-width">
@@ -372,75 +455,192 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endbuild-->
 
   <script>
-    // Variáveis globais para busca
+    // Variáveis globais para o filtro híbrido
     let searchTimeout;
     let allCodelabs = [];
 
-    // Função para inicializar a busca
-    function initializeSearch() {
-      console.log('Inicializando busca...');
+    // Função para controlar visibilidade da label customizada
+    function updateLabelVisibility(hybridFilter, inputElement) {
+      const hasContent = inputElement.value.trim().length > 0;
+      const isFocused = document.activeElement === inputElement;
       
-      // Aguardar um pouco para garantir que os elementos carregaram
+      if (hasContent) {
+        hybridFilter.classList.add('has-content');
+      } else {
+        hybridFilter.classList.remove('has-content');
+      }
+      
+      if (isFocused) {
+        hybridFilter.classList.add('is-focused');
+      } else {
+        hybridFilter.classList.remove('is-focused');
+      }
+    }
+
+    // Função para inicializar o filtro híbrido
+    function initializeHybridCategoryFilter() {
+      console.log('Inicializando filtro híbrido de categoria...');
+      
       setTimeout(() => {
         // Coletar todos os codelabs
         allCodelabs = Array.from(document.querySelectorAll('.codelab-card'));
         console.log('Codelabs encontrados:', allCodelabs.length);
         
-        // Configurar evento de busca
-        const searchInput = document.getElementById('searchInput');
-        const searchStats = document.getElementById('searchStats');
+        // Encontrar o input do paper-dropdown-menu
+        const hybridFilter = document.getElementById('hybridCategoryFilter');
+        const hybridStats = document.getElementById('hybridSearchStats');
         
-        if (searchInput) {
-          console.log('Campo de busca encontrado');
+        if (hybridFilter) {
+          console.log('Filtro híbrido encontrado');
           
-          // Evento de input
-          searchInput.addEventListener('input', function(e) {
-            const query = e.target.value.trim().toLowerCase();
-            console.log('Buscando por:', query);
+          // Aguardar um pouco mais para garantir que o paper-dropdown-menu foi renderizado
+          setTimeout(() => {
+            const inputElement = hybridFilter.querySelector('input');
+            console.log('Input encontrado:', !!inputElement);
             
-            // Debounce
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-              performSearch(query);
-            }, 300);
-          });
-          
-          // Evento de foco - mostrar estatísticas
-          searchInput.addEventListener('focus', function() {
-            if (searchStats) {
-              searchStats.classList.add('show');
+            if (inputElement) {
+              // Forçar propriedades do input
+              inputElement.style.cursor = 'text';
+              inputElement.style.pointerEvents = 'auto';
+              inputElement.style.backgroundColor = '#ffffff'; // CORRIGIDO: #ffffff ao invés de #ffff
+              inputElement.style.color = 'rgba(0, 0, 0, 0.87)';
+              inputElement.readOnly = false;
+              inputElement.disabled = false;
+              
+              // Remover qualquer label nativo que possa existir
+              const nativeLabels = hybridFilter.querySelectorAll('label');
+              nativeLabels.forEach(label => {
+                label.style.display = 'none';
+                label.style.visibility = 'hidden';
+                label.style.opacity = '0';
+              });
+              
+              // Adicionar evento de input para busca
+              inputElement.addEventListener('input', function(e) {
+                const query = e.target.value.trim().toLowerCase();
+                console.log('Buscando por:', query);
+                
+                // Atualizar visibilidade da label customizada
+                updateLabelVisibility(hybridFilter, inputElement);
+                
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                  performHybridSearch(query);
+                }, 300);
+              });
+              
+              // Eventos de foco/blur para estatísticas e label
+              inputElement.addEventListener('focus', function() {
+                console.log('Input focado');
+                updateLabelVisibility(hybridFilter, inputElement);
+                if (hybridStats) {
+                  updateSearchStats(allCodelabs.length, allCodelabs.length, '');
+                  hybridStats.classList.add('show');
+                }
+              });
+              
+              inputElement.addEventListener('blur', function() {
+                updateLabelVisibility(hybridFilter, inputElement);
+                setTimeout(() => {
+                  if (hybridStats) {
+                    hybridStats.classList.remove('show');
+                  }
+                }, 200);
+              });
+              
+              // Evento de teclas especiais - CORRIGIDO para interceptar espaço
+              inputElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                  e.target.value = '';
+                  updateLabelVisibility(hybridFilter, inputElement);
+                  performHybridSearch('');
+                  e.target.blur();
+                } else if (e.key === ' ') {
+                  // Interceptar barra de espaço para evitar abrir dropdown
+                  e.stopPropagation();
+                  console.log('Barra de espaço interceptada');
+                }
+              });
+              
+              // Interceptar eventos que podem abrir o dropdown
+              inputElement.addEventListener('keypress', function(e) {
+                if (e.key === ' ') {
+                  e.stopPropagation();
+                }
+              });
+              
+              inputElement.addEventListener('keyup', function(e) {
+                if (e.key === ' ') {
+                  e.stopPropagation();
+                }
+              });
+              
+              // Inicializar estado da label
+              updateLabelVisibility(hybridFilter, inputElement);
+              
+              console.log('Eventos de input configurados com sucesso!');
+            } else {
+              console.error('Input não encontrado no paper-dropdown-menu');
             }
-          });
-          
-          // Evento de blur - ocultar estatísticas após um delay
-          searchInput.addEventListener('blur', function() {
-            setTimeout(() => {
-              if (searchStats) {
-                searchStats.classList.remove('show');
-              }
-            }, 200);
-          });
-          
-          // Evento de teclas especiais
-          searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-              e.target.value = '';
-              performSearch('');
-              e.target.blur();
-            }
-          });
-          
-          // Atualizar estatísticas iniciais
-          updateSearchStats(allCodelabs.length, allCodelabs.length, '');
-        } else {
-          console.error('Campo de busca não encontrado');
+          }, 500);
         }
+        
+        // Configurar eventos de clique nas categorias
+        setupCategoryClickEvents();
+        
+      }, 1500);
+    }
+
+    // ... rest of code remains same
+    // Função para configurar eventos de clique nas categorias
+    function setupCategoryClickEvents() {
+      console.log('Configurando eventos de clique nas categorias...');
+      
+      // Aguardar um pouco mais para garantir que os paper-items foram renderizados
+      setTimeout(() => {
+        const categoryItems = document.querySelectorAll('#hybridCategoryList paper-item');
+        console.log('Itens de categoria encontrados:', categoryItems.length);
+        
+        categoryItems.forEach((item, index) => {
+          const filter = item.getAttribute('filter') || '';
+          const categoryName = item.textContent.trim();
+          
+          console.log(`Configurando item ${index}: "${categoryName}" (filter: "${filter}")`);
+          
+          item.addEventListener('click', function(e) {
+            console.log('Categoria clicada:', categoryName, 'Filter:', filter);
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Aplicar filtro de categoria
+            performCategoryFilter(filter);
+            
+            // Atualizar o input com a categoria selecionada
+            const hybridFilter = document.getElementById('hybridCategoryFilter');
+            if (hybridFilter) {
+              const inputElement = hybridFilter.querySelector('input');
+              if (inputElement) {
+                inputElement.value = filter || '';
+                updateLabelVisibility(hybridFilter, inputElement);
+                console.log('Input atualizado com:', filter);
+              }
+            }
+            
+            // Fechar o dropdown
+            const paperDropdown = document.getElementById('hybridCategoryFilter');
+            if (paperDropdown && paperDropdown.close) {
+              paperDropdown.close();
+            }
+          });
+        });
+        
+        console.log('Eventos de clique configurados!');
       }, 1000);
     }
 
-    // Função para realizar a busca
-    function performSearch(query) {
-      console.log('Executando busca para:', query);
+    // Função para realizar busca híbrida (busca + categoria)
+    function performHybridSearch(query) {
+      console.log('Executando busca híbrida para:', query);
       
       let visibleCount = 0;
       
@@ -452,8 +652,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Buscar em título, categoria e tags
         const searchText = `${title} ${category} ${tags}`.toLowerCase();
         const isMatch = !query || searchText.includes(query);
-        
-        console.log(`Card ${index + 1}: "${title}" - Match: ${isMatch}`);
         
         if (isMatch) {
           card.classList.remove('search-hidden');
@@ -474,9 +672,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       console.log(`Resultado: ${visibleCount} de ${allCodelabs.length} codelabs visíveis`);
     }
 
+    // Função para filtrar por categoria (funcionalidade original)
+    function performCategoryFilter(category) {
+      console.log('Filtrando por categoria:', category);
+      
+      let visibleCount = 0;
+      
+      allCodelabs.forEach((card) => {
+        const cardCategory = getCardCategory(card);
+        const isMatch = !category || cardCategory.toLowerCase() === category.toLowerCase();
+        
+        if (isMatch) {
+          card.classList.remove('search-hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('search-hidden');
+        }
+      });
+      
+      // Atualizar estatísticas
+      updateSearchStats(visibleCount, allCodelabs.length, category);
+      
+      console.log(`Resultado categoria: ${visibleCount} de ${allCodelabs.length} codelabs visíveis`);
+    }
+
     // Função para obter título do card
     function getCardTitle(card) {
-      // Tentar diferentes seletores para o título
       const selectors = [
         '.description',
         '[data-title]',
@@ -506,9 +727,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return card.getAttribute('data-tags') || '';
     }
 
-    // Função para atualizar estatísticas de busca
+    // Função para atualizar estatísticas
     function updateSearchStats(visible, total, query) {
-      const statsElement = document.getElementById('searchStats');
+      const statsElement = document.getElementById('hybridSearchStats');
       if (statsElement) {
         if (query) {
           statsElement.textContent = `${visible} de ${total} codelabs encontrados`;
@@ -519,15 +740,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     // Inicializar quando a página carregar
-    document.addEventListener('DOMContentLoaded', initializeSearch);
+    document.addEventListener('DOMContentLoaded', initializeHybridCategoryFilter);
     
-    // Também tentar inicializar se a página já carregou
     if (document.readyState === 'complete') {
-      initializeSearch();
+      initializeHybridCategoryFilter();
     }
     
-    // Fallback adicional
-    window.addEventListener('load', initializeSearch);
+    window.addEventListener('load', initializeHybridCategoryFilter);
   </script>
 </body>
 </html>
