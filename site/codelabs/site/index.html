@@ -1,0 +1,171 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Teste 123</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+
+<style>
+.code-container {
+    position: relative;
+    margin: 16px 0;
+}
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 10px;
+    font-family: monospace;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    z-index: 1000;
+    user-select: none;
+    font-weight: bold;
+}
+.copy-button:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+}
+.copy-button.copied {
+    background: rgba(76, 175, 80, 0.9);
+    color: #ffffff;
+}
+</style>
+<script>
+function copyCode(button) {
+    const container = button.parentElement;
+    const codeBlock = container.querySelector("pre code") || container.querySelector("pre");
+    const text = codeBlock.innerText || codeBlock.textContent;
+    
+    navigator.clipboard.writeText(text).then(() => {
+        button.textContent = "✓ OK";
+        button.classList.add("copied");
+        
+        setTimeout(() => {
+            button.textContent = "COPY";
+            button.classList.remove("copied");
+        }, 1500);
+    }).catch(err => {
+        // Fallback para navegadores mais antigos
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            button.textContent = "✓ OK";
+            button.classList.add("copied");
+            setTimeout(() => {
+                button.textContent = "COPY";
+                button.classList.remove("copied");
+            }, 1500);
+        } catch (fallbackErr) {
+            button.textContent = "ERR";
+            setTimeout(() => {
+                button.textContent = "COPY";
+            }, 1500);
+        }
+        document.body.removeChild(textArea);
+    });
+}
+</script>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="site"
+                  title="Teste 123"
+                  environment="web"
+                  feedback-link="https://zarin.io">
+    
+      <google-codelab-step label="Overview" duration="1">
+        <h2 class="checklist" is-upgraded>What You&#39;ll Learn</h2>
+<ul class="checklist">
+<li>how to set the amount of time each slide will take to finish</li>
+<li>how to include code snippets</li>
+<li>how to hyperlink items</li>
+<li>how to include images</li>
+<li>other stuff</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Setting Duration" duration="2">
+        <p>To indicate how long each slide will take to go through, set the <code>Duration</code> under each Heading 2 (i.e. <code>##</code>) to an integer. The integers refer to minutes. If you set <code>Duration: 4</code> then a particular slide will take 4 minutes to complete.</p>
+<p>The total time will automatically be calculated for you and will be displayed on the codelab once you create it.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Code Snippets" duration="3">
+        <p>To include code snippets you can do a few things.</p>
+<ul>
+<li>Inline highlighting can be done using the tiny tick mark on your keyboard: &#34;`&#34;</li>
+<li>Embedded code</li>
+</ul>
+<h2 is-upgraded>JavaScript</h2>
+<div class="code-container"><button class="copy-button" onclick="copyCode(this)">COPY</button><pre><code language="language-javascript" class="language-javascript">{ 
+  key1: &#34;string&#34;, 
+  key2: integer,
+  key3: &#34;string&#34;
+}
+</code></pre></div>
+<h2 is-upgraded>Java</h2>
+<div class="code-container"><button class="copy-button" onclick="copyCode(this)">COPY</button><pre><code language="language-java" class="language-java">for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+</code></pre></div>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Hyperlinking and Embedded Images" duration="1">
+        <h2 is-upgraded>Hyperlinking</h2>
+<p><a href="https://www.youtube.com/user/iamhalsey/playlists" target="_blank">Youtube - Halsey Playlists</a></p>
+<h2 is-upgraded>Images</h2>
+<p class="image-container"><img alt="alt-text-here" src="img\\45432c7d610853d.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Other Stuff" duration="1">
+        <p>Checkout the official documentation here: <a href="https://github.com/googlecodelabs/tools/blob/master/FORMAT-GUIDE.md" target="_blank">Codelab Formatting Guide</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

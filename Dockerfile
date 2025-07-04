@@ -24,22 +24,22 @@ RUN cd site/codelabs && \
 WORKDIR /app/site
 RUN npx gulp dist --codelabs-dir=codelabs
 
+# Adicionar CSS para ocultar o link "Report a mistake"
+RUN find dist -name "*.html" -type f -exec sed -i 's|</head>|<style>.feedback-link, [href*="mistake"], [href*="report"] { display: none !important; }</style></head>|g' {} \;
+
 FROM nginx:alpine
 
 ENV TZ=America/Sao_Paulo
 
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d/
+# Verificar se o arquivo nginx.conf existe antes de copiar
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
 COPY --from=builder /app/site/dist /usr/share/nginx/html
 
 RUN chmod -R 755 /usr/share/nginx/html && \
-    apk add --no-cache bash \
-    --allow-untrusted \
-    --no-check-certificate \
-    tzdata && \
+    apk add --no-cache bash tzdata && \
     cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
-    echo "${TZ}" > /etc/timezone && \
-    rm -rf /var/cache/apk/*
+    echo "${TZ}" > /etc/timezone
 
 EXPOSE 8080
 
